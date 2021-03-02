@@ -13,34 +13,60 @@ npm install --save react-native-alertbox
 
 ## Usage
 
-First you have to wrap App with AlertBoxProvider
+First you have to add AlertBox to App
 
 ```jsx
 //App.js
 import React from 'react';
-import {AlertBoxProvider} from 'react-native-alertbox';
+import {AlertBox} from 'react-native-alertbox';
 
 export default function App() {
-  return <AlertBoxProvider>{/* your code */}</AlertBoxProvider>;
+  return (
+    <View>
+      {/* ... */}
+      <AlertBox />
+    </View>
+  );
 }
 ```
+
 <br/>
-After that you need to call `useAlertBox` methods from any component in your app.
+After that just you need to call `fire` methods from anywhere in your app. 🎉
 
 ### Show some message
 
 ```jsx
 import React from 'react';
 import {Button} from 'react-native';
-import {useAlertBox} from '../src/index';
+import {fire} from 'react-native-alertbox';
 
-export default function ExampleBasic() {
-  const {fire} = useAlertBox();
+export default function ExampleScreen() {
   return (
     <Button
       title="Click Me"
       onPress={() => fire({title: 'Title', message: 'Some text message'})}
     />
+  );
+}
+```
+
+If you need to use only one screen, you can instance your AlertBox Component with a ref ID.
+
+```jsx
+import React, {useRef} from 'react';
+import {Button, View} from 'react-native';
+import {AlertBox} from 'react-native-alertbox';
+
+export default function ExampleScreen() {
+  const ref = useRef();
+  return (
+    <View>
+      <AlertBox />
+      <Button
+        title="Click Me"
+        onPress={() => ref.current.fire({title: 'Title', message: 'Some text message'})}
+      />
+    </View>
   );
 }
 ```
