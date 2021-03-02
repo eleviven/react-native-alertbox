@@ -6,13 +6,25 @@ export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = height;
 
 export const VARIABLES = {
-  CARD: Platform.select({ios: 'rgba(242, 242, 242, 1)'}),
+  CARD: Platform.select({
+    ios: 'rgba(242, 242, 242, 1)',
+    android: PlatformColor('@android:color/background_light'),
+  }),
   OVERLAY: 'rgba(0, 0, 0, 0.15)',
   BORDER: 'rgba(60, 60, 67, 0.3)',
   TEXT_INPUT: 'rgba(255, 255, 255, 1)',
-  LABEL: PlatformColor('label'),
-  SYSTEM_BLUE: PlatformColor('systemBlue'),
-  SYSTEM_GRAY: PlatformColor('systemGray4'),
+  LABEL: Platform.select({
+    ios: PlatformColor('label'),
+    android: PlatformColor('@android:color/black'),
+  }),
+  SYSTEM_BLUE: Platform.select({
+    ios: PlatformColor('systemBlue'),
+    android: 'rgb(0, 122, 255)',
+  }),
+  SYSTEM_GRAY: Platform.select({
+    ios: PlatformColor('systemGray4'),
+    android: 'rgb(209, 209, 214)',
+  }),
 };
 
 export const TYPOGRAPHY = {
