@@ -2,7 +2,7 @@
 
 <p align="center" style="font-size: 1.2rem;">
   <strong>AlertBox</strong> it is a React Native alert & prompt module, working both on Android and iOS platform.<br /><br />
-  <img src="https://i.imgur.com/n9kJstx.gif" alt="" width="86%" style="border: 0; width: 86%; min-width: 240px; max-width: 100%;" />
+  <img src="https://i.imgur.com/IUbVRGv.png" alt="" width="86%" style="border: 0; width: 86%; min-width: 240px; max-width: 100%;" />
 </p>
 
 ## Installation
@@ -97,6 +97,8 @@ fire({
   ],
 });
 ```
+<br/>
+<img src="https://media0.giphy.com/media/NCzLYpojjyfLA1EjTL/giphy.gif" alt="" width="86%" style="border: 0; width: 86%; min-width: 240px; max-width: 100%;" />
 
 ## License
 
