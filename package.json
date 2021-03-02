@@ -1,0 +1,32 @@
+{
+  "name": "react-native-alertbox",
+  "version": "0.1.2",
+  "description": "React Native alert & prompt utility",
+  "main": "index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {},
+  "license": "MIT",
+  "author": {
+    "name": "Firuz Hacıyev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eleviven/react-native-alertbox"
+  },
+  "bugs": "https://github.com/eleviven/react-native-alertbox/issues",
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "react-native-alert",
+    "react-native-alertbox",
+    "alertbox",
+    "alert"
+  ],
+  "devDependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.4"
+  }
+}
