@@ -1,4 +1,4 @@
-import {Dimensions, PlatformColor, Platform} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 
@@ -14,15 +14,15 @@ export const VARIABLES = {
   BORDER: 'rgba(60, 60, 67, 0.3)',
   TEXT_INPUT: 'rgba(255, 255, 255, 1)',
   LABEL: Platform.select({
-    ios: PlatformColor('label'),
-    android: PlatformColor('@android:color/black'),
+    ios: 'rgb(0, 0, 0)',
+    android: 'rgb(0, 0, 0)',
   }),
   SYSTEM_BLUE: Platform.select({
-    ios: PlatformColor('systemBlue'),
+    ios: 'rgb(0, 122, 255)',
     android: 'rgb(0, 122, 255)',
   }),
   SYSTEM_GRAY: Platform.select({
-    ios: PlatformColor('systemGray4'),
+    ios: 'rgb(209, 209, 214)',
     android: 'rgb(209, 209, 214)',
   }),
 };
