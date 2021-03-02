@@ -60,17 +60,20 @@ export default function Alertbox({
           {fields && (
             <View style={styles.fieldsWrapper}>
               {fields.map((field, index) => (
-                <TextInput
+                <View
                   key={index}
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  onChangeText={(text) =>
-                    setFieldState((prevState) => ({
-                      ...prevState,
-                      [field.name]: text,
-                    }))
-                  }
-                />
+                  style={styles.fieldsItem(fields.length - 1 !== index)}>
+                  <TextInput
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    onChangeText={(text) =>
+                      setFieldState((prevState) => ({
+                        ...prevState,
+                        [field.name]: text,
+                      }))
+                    }
+                  />
+                </View>
               ))}
             </View>
           )}
@@ -128,4 +131,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     width: '100%',
   },
+  fieldsItem: (margin) => ({
+    marginBottom: margin ? 10 : 0,
+  }),
 });

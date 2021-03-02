@@ -2,12 +2,13 @@ import React from 'react';
 import {StyleSheet, TextInput as RNTextInput} from 'react-native';
 import {VARIABLES} from '../../constants/index';
 
-export default function TextInput({placeholder, onChangeText}) {
+export default function TextInput({placeholder, onChangeText, ...props}) {
   return (
     <RNTextInput
       placeholder={placeholder}
       onChangeText={onChangeText}
       style={styles.element}
+      {...props}
     />
   );
 }
