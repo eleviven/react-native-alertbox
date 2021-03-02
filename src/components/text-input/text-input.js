@@ -16,9 +16,11 @@ export default function TextInput({placeholder, onChangeText, ...props}) {
 const styles = StyleSheet.create({
   element: {
     backgroundColor: VARIABLES.TEXT_INPUT,
-    borderWidth: 1,
     borderColor: VARIABLES.BORDER,
-    padding: 10,
+    borderWidth: 1,
     borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 0,
+    height: 40,
   },
 });
