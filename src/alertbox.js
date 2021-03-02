@@ -1,5 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Animated,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import Button from './components/button';
 import Card from './components/card/index';
 import Text from './components/text/index';
@@ -14,7 +20,7 @@ export default function Alertbox({
   dispatchRemove,
 }) {
   const [fieldState, setFieldState] = useState({});
-
+  const behavior = Platform.select({ios: 'padding', android: 'height'});
   const animatedValue = useRef(new Animated.Value(0)).current;
   const opacity = animatedValue.interpolate({
     inputRange: [0, 1],
@@ -46,73 +52,85 @@ export default function Alertbox({
     }).start();
   }, [animatedValue]);
   return (
-    <Animated.View style={[styles.wrapper, {opacity}]}>
-      <Animated.View style={[styles.inner, {transform: [{scale}]}]}>
-        <Card.Wrapper>
-          <Card.Body>
-            {title && <Text weight="bold">{title}</Text>}
-            {paragraph && (
-              <Text size="small" style={styles.paragraph}>
-                {paragraph}
-              </Text>
-            )}
-          </Card.Body>
-          {fields && (
-            <View style={styles.fieldsWrapper}>
-              {fields.map((field, index) => (
-                <View
-                  key={index}
-                  style={styles.fieldsItem(fields.length - 1 !== index)}>
-                  <TextInput
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    onChangeText={(text) =>
-                      setFieldState((prevState) => ({
-                        ...prevState,
-                        [field.name]: text,
-                      }))
-                    }
-                  />
-                </View>
-              ))}
-            </View>
-          )}
-          <Card.Footer>
-            {actions ? (
-              actions.map((action, index) => (
-                <View
-                  key={index}
-                  style={styles.buttonItem(actions.length - 1 !== index)}>
-                  <Button
-                    title={action.text}
-                    onPress={() => handleClose(action.onPress)}
-                    textWeight={action.style === 'cancel' ? 'bold' : 'regular'}
-                  />
-                </View>
-              ))
-            ) : (
-              <View style={styles.buttonItem(false)}>
-                <Button title="Close" onPress={handleClose} textWeight="bold" />
+    <KeyboardAvoidingView style={styles.keyboardWrapper} behavior={behavior}>
+      <Animated.View style={[styles.wrapper, {opacity}]}>
+        <Animated.View style={[styles.inner, {transform: [{scale}]}]}>
+          <Card.Wrapper>
+            <Card.Body>
+              {title && <Text weight="bold">{title}</Text>}
+              {paragraph && (
+                <Text size="small" style={styles.paragraph}>
+                  {paragraph}
+                </Text>
+              )}
+            </Card.Body>
+            {fields?.length > 0 && (
+              <View style={styles.fieldsWrapper}>
+                {fields.map((field, index) => (
+                  <View
+                    key={index}
+                    style={styles.fieldsItem(fields.length - 1 !== index)}>
+                    <TextInput
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      onChangeText={(text) =>
+                        setFieldState((prevState) => ({
+                          ...prevState,
+                          [field.name]: text,
+                        }))
+                      }
+                      autoFocus={index === 0}
+                    />
+                  </View>
+                ))}
               </View>
             )}
-          </Card.Footer>
-        </Card.Wrapper>
+            <Card.Footer>
+              {actions ? (
+                actions.map((action, index) => (
+                  <View
+                    key={index}
+                    style={styles.buttonItem(actions.length - 1 !== index)}>
+                    <Button
+                      title={action.text}
+                      onPress={() => handleClose(action.onPress)}
+                      textWeight={
+                        action.style === 'cancel' ? 'bold' : 'regular'
+                      }
+                    />
+                  </View>
+                ))
+              ) : (
+                <View style={styles.buttonItem(false)}>
+                  <Button
+                    title="Close"
+                    onPress={handleClose}
+                    textWeight="bold"
+                  />
+                </View>
+              )}
+            </Card.Footer>
+          </Card.Wrapper>
+        </Animated.View>
       </Animated.View>
-    </Animated.View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  keyboardWrapper: {
     position: 'absolute',
     zIndex: 9,
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
+  },
+  wrapper: {
+    backgroundColor: VARIABLES.OVERLAY,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: VARIABLES.OVERLAY,
   },
   inner: {
     width: SCREEN_WIDTH * 0.67,
