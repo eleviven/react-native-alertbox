@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Button} from 'react-native';
-import {useAlertBox} from '../src/index';
+import {fire} from '../src/index';
 
 export default function ExampleBasic() {
-  const {fire} = useAlertBox();
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button

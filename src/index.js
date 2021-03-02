@@ -1,1 +1,1 @@
-export {AlertBoxProvider, useAlertBox} from './alertbox-provider';
+export {AlertBoxWrapper as AlertBox, fire} from './alertbox-wrapper';

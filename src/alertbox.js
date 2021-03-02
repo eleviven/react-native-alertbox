@@ -102,6 +102,7 @@ export default function Alertbox({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
+    zIndex: 9,
     top: 0,
     left: 0,
     width: '100%',
