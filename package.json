@@ -1,6 +1,6 @@
 {
   "name": "react-native-alertbox",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "React Native alert & prompt utility",
   "main": "src/index.js",
   "files": [
