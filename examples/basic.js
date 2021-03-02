@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button} from 'react-native';
-import {fire} from '../src/index';
+import {fire} from 'react-native-alertbox';
 
 export default function ExampleBasic() {
   return (
