@@ -69,7 +69,9 @@ export default function Alertbox({
                 {fields.map((field, index) => (
                   <View
                     key={index}
-                    style={styles.fieldsItem(fields.length - 1 !== index)}>
+                    style={{
+                      marginBottom: fields.length - 1 !== index ? 10 : 0,
+                    }}>
                     <TextInput
                       name={field.name}
                       placeholder={field.placeholder}
@@ -90,7 +92,10 @@ export default function Alertbox({
                 actions.map((action, index) => (
                   <View
                     key={index}
-                    style={styles.buttonItem(actions.length - 1 !== index)}>
+                    style={[
+                      styles.buttonItem,
+                      {borderRightWidth: actions.length - 1 !== index ? 1 : 0},
+                    ]}>
                     <Button
                       title={action.text}
                       onPress={() => handleClose(action.onPress)}
@@ -101,7 +106,7 @@ export default function Alertbox({
                   </View>
                 ))
               ) : (
-                <View style={styles.buttonItem(false)}>
+                <View style={styles.buttonItem}>
                   <Button
                     title="Close"
                     onPress={handleClose}
@@ -134,22 +139,20 @@ const styles = StyleSheet.create({
   },
   inner: {
     width: SCREEN_WIDTH * 0.67,
+    maxWidth: 350,
   },
   paragraph: {
     marginTop: 5,
     textAlign: 'center',
   },
-  buttonItem: (border) => ({
+  buttonItem: {
     flex: 1,
-    borderRightWidth: border ? 1 : 0,
+    borderRightWidth: 0,
     borderRightColor: VARIABLES.BORDER,
-  }),
+  },
   fieldsWrapper: {
     marginBottom: 15,
     paddingHorizontal: 15,
     width: '100%',
   },
-  fieldsItem: (margin) => ({
-    marginBottom: margin ? 10 : 0,
-  }),
 });

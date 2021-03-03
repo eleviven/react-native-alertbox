@@ -1,16 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
-import {TYPOGRAPHY, VARIABLES} from '../../constants';
+import {TYPOGRAPHY, VARIABLES} from '../../constants/index';
 
 export default function Text({color, size, weight, children, style, ...props}) {
+  const styles = stylesRef({color, size, weight});
   return (
     <RNText
-      style={[
-        styles.textColor(color),
-        styles.textSize(size),
-        styles.textWeight(weight),
-        style,
-      ]}
+      style={[styles.textColor, styles.textSize, styles.textWeight, style]}
       {...props}>
       {children}
     </RNText>
@@ -23,14 +19,15 @@ Text.defaultProps = {
   weight: 'regular',
 };
 
-const styles = StyleSheet.create({
-  textColor: (color) => ({
-    color: VARIABLES[color],
-  }),
-  textSize: (size) => ({
-    fontSize: TYPOGRAPHY.SIZES[size],
-  }),
-  textWeight: (weight) => ({
-    fontWeight: TYPOGRAPHY.WEIGHTS[weight],
-  }),
-});
+const stylesRef = ({color, size, weight}) =>
+  StyleSheet.create({
+    textColor: {
+      color: VARIABLES[color],
+    },
+    textSize: {
+      fontSize: TYPOGRAPHY.SIZES[size],
+    },
+    textWeight: {
+      fontWeight: TYPOGRAPHY.WEIGHTS[weight],
+    },
+  });

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, StyleSheet, Platform} from 'react-native';
 import Text from '../text/index';
 import {VARIABLES} from '../../constants/index';
 
 export default function Button({title, textWeight, ...props}) {
   const [isHover, setIsHover] = useState(false);
+  const styles = stylesRef({isHover});
   const onPressIn = () => {
     setIsHover(true);
   };
@@ -15,7 +16,7 @@ export default function Button({title, textWeight, ...props}) {
     <Pressable
       onPressIn={onPressIn}
       onPressOut={onPressOut}
-      style={styles.button(isHover)}
+      style={[styles.button, Platform.OS === 'web' && {cursor: 'pointer'}]}
       {...props}>
       <Text color="SYSTEM_BLUE" weight={textWeight}>
         {title}
@@ -28,11 +29,12 @@ Button.defaultProps = {
   textWeight: 'black',
 };
 
-const styles = StyleSheet.create({
-  button: (isHover) => ({
-    height: 46,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: !isHover ? 'transparent' : VARIABLES.SYSTEM_GRAY,
-  }),
-});
+const stylesRef = ({isHover}) =>
+  StyleSheet.create({
+    button: {
+      height: 46,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: !isHover ? 'transparent' : VARIABLES.SYSTEM_GRAY,
+    },
+  });
