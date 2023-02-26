@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, StyleSheet, Platform} from 'react-native';
-import Text from '../text/index';
+import Text from '../text/text';
 import {VARIABLES} from '../../constants/index';
 
 export default function Button({title, textWeight, ...props}) {

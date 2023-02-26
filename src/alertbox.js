@@ -6,10 +6,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import Button from "./components/button";
-import Card from "./components/card/index";
-import Text from "./components/text/index";
+
+import Button from "./components/button/button";
+import Card from "./components/card/card";
+import Text from "./components/text/text";
 import TextInput from "./components/text-input/text-input";
+
 import { SCREEN_WIDTH, VARIABLES } from "./constants/index";
 
 export default function Alertbox({
@@ -30,6 +32,14 @@ export default function Alertbox({
     inputRange: [0, 1],
     outputRange: [1.1, 1],
   });
+
+  const handleChangeField = (name, value, callback) => {
+    setFieldState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    callback?.(value);
+  };
 
   const handleClose = (action) => {
     Animated.timing(animatedValue, {
@@ -75,17 +85,12 @@ export default function Alertbox({
                     }}
                   >
                     <TextInput
-                      name={field.name}
-                      placeholder={field.placeholder}
-                      secureTextEntry={field.secureTextEntry}
-                      autoCapitalize={field.autoCapitalize}
-                      onChangeText={(text) =>
-                        setFieldState((prevState) => ({
-                          ...prevState,
-                          [field.name]: text,
-                        }))
-                      }
                       autoFocus={index === 0}
+                      placeholderTextColor={VARIABLES.SYSTEM_GRAY}
+                      {...field}
+                      onChangeText={(value) =>
+                        handleChangeField(field.name, value, field.onChangeText)
+                      }
                     />
                   </View>
                 ))}
