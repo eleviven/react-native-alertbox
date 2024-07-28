@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, Platform} from 'react-native';
 import Text from '../text/text';
 import {VARIABLES} from '../../constants/index';
 
-export default function Button({title, textWeight, ...props}) {
+export default function Button({title, textWeight = 'black', ...props}) {
   const [isHover, setIsHover] = useState(false);
   const styles = stylesRef({isHover});
   const onPressIn = () => {
@@ -24,10 +24,6 @@ export default function Button({title, textWeight, ...props}) {
     </Pressable>
   );
 }
-
-Button.defaultProps = {
-  textWeight: 'black',
-};
 
 const stylesRef = ({isHover}) =>
   StyleSheet.create({

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
 import {TYPOGRAPHY, VARIABLES} from '../../constants/index';
 
-export default function Text({color, size, weight, children, style, ...props}) {
+export default function Text({color = 'LABEL', size = 'normal', weight = 'regular', children, style, ...props}) {
   const styles = stylesRef({color, size, weight});
   return (
     <RNText
@@ -12,12 +12,6 @@ export default function Text({color, size, weight, children, style, ...props}) {
     </RNText>
   );
 }
-
-Text.defaultProps = {
-  color: 'LABEL',
-  size: 'normal',
-  weight: 'regular',
-};
 
 const stylesRef = ({color, size, weight}) =>
   StyleSheet.create({
